@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Mockup</title>
+</head>
+
+<body>
+    <div class="step" id="first-step">
+        <span class="progression"></span>
+        <div class="header">
+            Mon profil général - 8 sur 15
+        </div>
+        <div class="content">
+            <div class="question">
+                Avez-vous des enfants de moins de 15 ans ?
+            </div>
+
+            <div class="answers">
+                <div class="answer yes">
+                    <button onclick="nextQuestion()">Oui</button>
+                    <span class="yes-span"></span>
+                </div>
+                <div class="answer no">
+                    <button onclick="nextQuestion()">Non</button>
+                    <span class="no-span"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step" id="second-step" style="display: none; transform: translate(50px)">
+        <span class="progression"></span>
+        <div class="header">
+            Mon profil général - 9 sur 15
+        </div>
+        <div class="content">
+            <div class="question">
+                Avez-vous des petits-enfants ?
+            </div>
+
+            <div class="answers">
+                <div class="answer yes">
+                    <button onclick="nextQuestion()">Oui</button>
+                    <span class="yes-span"></span>
+                </div>
+                <div class="answer no">
+                    <button onclick="nextQuestion()">Non</button>
+                    <span class="no-span"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

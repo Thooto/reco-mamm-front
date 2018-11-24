@@ -1,16 +1,23 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+// Imports
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-Vue.use(Vuex)
+
+
+// Setup store
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  }
-})
+    state: {
+        url: 'http://localhost:3000',
+        logged: false
+    },
+    mutations: {
+        login(state) {
+            state.logged = true;
+        },
+        logout(state) {
+            state.logged = false;
+        }
+    }
+});

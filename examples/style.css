@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Quicksand', sans-serif;
+  background: radial-gradient(circle at bottom, #C2E8C2, #69C9C8, #465779);
+}
+
+.step {
+  -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+}
+
+.step .content {
+  padding: 25px;
+}
+
+.step .progression {
+  height: 3px;
+  width: 80%;
+  background: -webkit-gradient(linear, left top, right top, from(#7eec7e), color-stop(#22cac7), to(#164094));
+  background: linear-gradient(to right, #7eec7e, #22cac7, #164094);
+}
+
+.step .header {
+  font-size: .6rem;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.step .answers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20px;
+}
+
+.step .answers .answer {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0;
+          flex: 1 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-transition: .35s ease-in-out;
+  transition: .35s ease-in-out;
+  margin: 5px;
+  margin-bottom: 0;
+}
+
+.step .answers .answer button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 5px;
+  background: none;
+  border: none;
+  font-weight: normal;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.step .answers .answer button:hover {
+  cursor: pointer;
+}
+
+.step .answers .answer span {
+  width: 0;
+  height: 1px;
+  -webkit-transition: .35s ease-in-out;
+  transition: .35s ease-in-out;
+}
+
+.step .answers .answer:hover span {
+  width: 100%;
+}
+
+.step .answers .answer:hover.yes {
+  -webkit-box-shadow: 0 3px 9px rgba(15, 138, 42, 0.2);
+          box-shadow: 0 3px 9px rgba(15, 138, 42, 0.2);
+}
+
+.step .answers .answer:hover.no {
+  -webkit-box-shadow: 0 3px 9px rgba(15, 50, 148, 0.2);
+          box-shadow: 0 3px 9px rgba(15, 50, 148, 0.2);
+}
+
+button:focus {
+  outline: 0;
+}
+
+.vanished {
+  -webkit-filter: blur(15px);
+          filter: blur(15px);
+  opacity: 0;
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+}
+
+.yes-span {
+  background: #1c8f1c;
+}
+
+.no-span {
+  background: #164094;
+}
+/*# sourceMappingURL=style.css.map */
