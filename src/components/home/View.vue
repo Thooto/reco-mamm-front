@@ -1,102 +1,90 @@
 <template>
-    <section class="hero is-primary is-bold is-fullheight">
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                    <div class="navbar-brand">
-                        <router-link class="navbar-item" to="/">Reconstruction mammaire</router-link>
+  <section class="hero is-primary is-bold is-fullheight">
+    <div class="hero-head">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <router-link class="navbar-item has-text-weight-bold" to="/">reconstruct</router-link>
 
-                        <a role="button" class="navbar-burger burger" :class="{'is-active': isActive}" @click="toggleMenu()">
-                            <span aria-hidden="true"></span>
-                            <span aria-hidden="true"></span>
-                            <span aria-hidden="true"></span>
-                        </a>
-                    </div>
+            <a
+              role="button"
+              class="navbar-burger burger"
+              :class="{'is-active': isActive}"
+              @click="toggleMenu()"
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
 
-                    <div class="navbar-menu" :class="{'is-active': isActive}">
-                        <div class="navbar-end">
-                            <router-link class="navbar-item" to="/parcours" @click.native="closeMenu()">Commencer le parcours</router-link>
-                            <router-link class="navbar-item" to="/a-propos" @click.native="closeMenu()">A propos</router-link>
-                            <a class="navbar-item" v-if="logged" @click="logout()">Déconnexion</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+          <div class="navbar-menu" :class="{'is-active': isActive}">
+            <div class="navbar-end">
+              <router-link class="navbar-item" to="/parcours" @click.native="closeMenu()">
+                <b-icon icon="arrow-right-circle-outline"></b-icon>
+                <p class="has-text-weight-bold">Commencer le parcours</p>
+              </router-link>
+              <router-link class="navbar-item" to="/a-propos" @click.native="closeMenu()">
+                <b-icon icon="help-circle-outline"></b-icon>
+                <p class="has-text-weight-bold">A propos</p>
+              </router-link>
+              <a class="navbar-item" v-if="logged" @click="logout()">Déconnexion</a>
+            </div>
+          </div>
         </div>
+      </nav>
+    </div>
 
-        <!-- Hero content: will be in the middle -->
-        <div class="hero-body">
-            <div class="container has-text-centered">
-            <h1 class="title">
-                Votre reconstruction mammaire
-            </h1>
-            <h2 class="subtitle">
-                Soyez accompagnée pour mieux vous comprendre
-            </h2>
-            </div>
+    <div class="hero-body">
+      <div class="container">
+        <div class="has-text-centered">
+          <h1 class="title">Des questions pour vous aider</h1>
         </div>
-
-        <!-- Hero footer: will stick at the bottom -->
-        <!-- <div class="hero-foot">
-            <nav class="tabs">
-            <div class="container">
-                <ul>
-                <li class="is-active"><a>Overview</a></li>
-                <li><a>Modifiers</a></li>
-                <li><a>Grid</a></li>
-                <li><a>Elements</a></li>
-                <li><a>Components</a></li>
-                <li><a>Layout</a></li>
-                </ul>
-            </div>
-            </nav>
-        </div> -->
-    </section>
-    <!-- <section>
-        <section class="hero is-medium is-primary is-bold">
-            <div class="hero-body">
-                <div class="container has-text-centered">
-                    <h1 class="title">Votre reconstruction mammaire</h1>
-                    <h2 class="subtitle">Soyez accompagnée pour mieux vous comprendre</h2>
-                </div>
-            </div>
-        </section>
-        <section class="hero is-medium">
-            <div class="hero-body">
-                <div class="container has-text-centered">
-                    <h1 class="title">Construisez votre profil</h1>
-                    <h2 class="subtitle">Orientez-vous vers la meilleure solution</h2>
-                </div>
-            </div>
-        </section>
-    </section> -->
+        <div class="has-text-left">
+          <h2 class="subtitle">Ici une phrase d'introduction pour découvrir le site internet,</h2>
+        </div>
+        <div class="has-text-right">
+          <h2 class="subtitle">Une seconde pour expliquer ce qu'on y fera,</h2>
+        </div>
+        <div class="has-text-centered">
+          <h2 class="subtitle">Une dernière pour proposer de démarrer l'expérience.</h2>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
 export default {
-    name: 'Home',
-    data() {
-        return {
-            isActive: false,
-        }
+  name: "Home",
+  data() {
+    return {
+      isActive: false
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.isActive = !this.isActive;
     },
-    methods: {
-        toggleMenu() {
-            this.isActive = !this.isActive;
-        },
-        closeMenu() {
-            this.isActive = false;
-        },
-        logout() {
-            this.closeMenu();
-            this.$store.commit('logout');
-            this.$router.push('/');
-        }
+    closeMenu() {
+      this.isActive = false;
     },
-    computed: {
-        logged() { return this.$store.state.logged; }
+    logout() {
+      this.closeMenu();
+      this.$store.commit("logout");
+      this.$router.push("/");
     }
-}
+  },
+  computed: {
+    logged() {
+      return this.$store.state.logged;
+    }
+  }
+};
 </script>
 
-
+<style lang="scss">
+.hero {
+  background: linear-gradient(red, blue);
+}
+</style>
