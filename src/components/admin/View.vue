@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import Question from './Question';
+// import Question from './Question';
 import Axios from 'axios';
 
 export default {
     name: 'Admin',
-    components: { Question },
+    // components: { Question },
     data() {
         return {
             categories: [],

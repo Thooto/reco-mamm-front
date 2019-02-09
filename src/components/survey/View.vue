@@ -1,18 +1,11 @@
 <template>
-    <div class="hello">
-        <h1>{{ msg }}</h1>
-    </div>
+  <div class="container">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "HelloWorld",
-    props: {
-        msg: String
-    }
+  name: "Survey"
 };
 </script>
-
-<style scoped lang="scss">
-
-</style>

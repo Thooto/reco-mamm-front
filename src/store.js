@@ -1,16 +1,13 @@
-// Imports
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-
-
-// Setup store
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export default (form) => new Vuex.Store({
     state: {
-        url: 'http://localhost:3000',
-        logged: false
+        url: 'http://localhost:3000/api',
+        logged: false,
+        form
     },
     mutations: {
         login(state) {

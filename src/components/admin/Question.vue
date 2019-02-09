@@ -42,7 +42,7 @@ export default {
             .then((response) => {
                 this.answers = response.data;
             })
-            .catch((err) => console.log(err));
+            // .catch((err) => console.log(err));
     }
 }
 </script>

@@ -3,15 +3,18 @@ import App from '@/App.vue';
 import router from '@/router';
 import store from '@/store';
 
+import Axios from 'axios';
+
 import Buefy from 'buefy';
-Vue.use(Buefy, {
-    // defaultIconPack: 'fas'
-});
+Vue.use(Buefy);
 
 Vue.config.productionTip = false;
 
-new Vue({
+Axios.get('http://localhost:3000/api/user/form')
+  .then(({ data }) => {
+    console.log(data);
+    new Vue({
     router,
-    store,
+    store: store(data),
     render: h => h(App)
-}).$mount('#app');
+  }).$mount('#app')});

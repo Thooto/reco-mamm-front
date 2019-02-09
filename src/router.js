@@ -8,6 +8,10 @@ import Survey from '@/components/survey/View.vue';
 import About from '@/components/about/View.vue';
 import Login from '@/components/login/View.vue';
 
+import Step from '@/components/survey/Step.vue';
+import Question from '@/components/survey/Question.vue';
+import Answer from '@/components/survey/Answer.vue';
+
 Vue.use(Router);
 
 export default new Router({
@@ -21,10 +25,17 @@ export default new Router({
             component: Admin,
             beforeEnter(to, from, next) {
                 if (store.state.logged) return next();
-                return next('/');
+                next('/');
             }
         },
-        { path: '/parcours', name: 'survey', component: Survey },
+        {
+            path: '/parcours', name: 'survey', component: Survey,
+            children: [
+                { path: '/step', name: 'step', component: Step },
+                { path: '/question', name: 'question', component: Question },
+                { path: '/answer', name: 'answer', component: Answer }
+            ]
+        },
         { path: '/a-propos', name: 'about', component: About },
         { path: '*', redirect: '/' }
     ]

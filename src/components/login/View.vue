@@ -20,8 +20,8 @@ export default {
     data() {
         return {
             username: {value: undefined, type: '', message: '', wrong: false},
-            password: {value: undefined, type: '', message: '', wrong: false},
-        };
+            password: {value: undefined, type: '', message: '', wrong: false}
+        }
     },
     methods: {
         login() {
@@ -55,7 +55,7 @@ export default {
                 this.username.type = '';
                 this.username.message = '';
                 this.username.wrong = false;
-            };
+            }
         },
         'username.wrong': function(value) {
             if (value) {
@@ -72,7 +72,7 @@ export default {
                 this.password.type = '';
                 this.password.message = '';
                 this.password.wrong = false;
-            };
+            }
         },
         'password.wrong': function(value) {
             if (value) {
