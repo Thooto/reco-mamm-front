@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper z-top">
     <img src="../../assets/pills_left.svg" class="pills-left">
     <div class="container">
       <div class="has-padding">
@@ -19,7 +19,7 @@
               to="/parcours"
               class="button is-primary is-inverted is-outlined is-rounded"
             >
-              <p>Commencer</p>
+              <p>{{message}}</p>
               <b-icon icon="arrow-right"></b-icon>
             </router-link>
           </div>
@@ -32,7 +32,14 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  computed: {
+    message() {
+      const start = this.$store.getters.start;
+
+      return start ? 'Commencer' : 'Reprendre';
+    }
+  }
 };
 </script>
 
@@ -48,12 +55,11 @@ export default {
 
 .has-max-width {
   width: 100%;
-  max-width: 800px;
 }
 
 .has-spacing {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .pills-left {
@@ -62,5 +68,9 @@ export default {
 
 .pills-right {
   margin-right: -100px;
+}
+
+.z-top {
+  z-index: 0;
 }
 </style>

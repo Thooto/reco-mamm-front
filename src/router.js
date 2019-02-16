@@ -7,10 +7,12 @@ import Admin from '@/components/admin/View.vue';
 import Survey from '@/components/survey/View.vue';
 import About from '@/components/about/View.vue';
 import Login from '@/components/login/View.vue';
+import Results from '@/components/results/View.vue';
 
-import Step from '@/components/survey/Step.vue';
-import Question from '@/components/survey/Question.vue';
-import Answer from '@/components/survey/Answer.vue';
+import General from '@/components/results/General.vue';
+import Trends from '@/components/results/Trends.vue';
+import Download from '@/components/results/Download.vue';
+
 
 Vue.use(Router);
 
@@ -28,15 +30,15 @@ export default new Router({
                 next('/');
             }
         },
+        { path: '/parcours', name: 'survey', component: Survey },
+        { path: '/a-propos', name: 'about', component: About },
         {
-            path: '/parcours', name: 'survey', component: Survey,
-            children: [
-                { path: '/step', name: 'step', component: Step },
-                { path: '/question', name: 'question', component: Question },
-                { path: '/answer', name: 'answer', component: Answer }
+            path: '/resultats', component: Results, children: [
+                { path: '', name: 'results', component: General },
+                { path: 'tendances', name: 'trends', component: Trends },
+                { path: 'telecharger', name: 'download', component: Download }
             ]
         },
-        { path: '/a-propos', name: 'about', component: About },
         { path: '*', redirect: '/' }
     ]
 });

@@ -12,9 +12,11 @@ Vue.config.productionTip = false;
 
 Axios.get('http://localhost:3000/api/user/form')
   .then(({ data }) => {
-    console.log(data);
+    store.dispatch('populateForm', data);
+
     new Vue({
-    router,
-    store: store(data),
-    render: h => h(App)
-  }).$mount('#app')});
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  });
