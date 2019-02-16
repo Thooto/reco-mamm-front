@@ -3,9 +3,11 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+console.log(process.env.VUE_APP_API_URL);
+
 export default new Vuex.Store({
     state: {
-        url: 'http://localhost:3000/api',
+        url: process.env.VUE_APP_API_URL,
         logged: false,
         current: {
             category: localStorage.category || 1,
@@ -13,7 +15,7 @@ export default new Vuex.Store({
             answer: localStorage.answer || 1,
             displayed: localStorage.displayed || 'category'
         },
-        answers: localStorage.answers.split(',') || []
+        answers: localStorage.answers ? localStorage.answers.split(',') : []
     },
     getters: {
         start(state) {

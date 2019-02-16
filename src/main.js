@@ -10,7 +10,7 @@ Vue.use(Buefy);
 
 Vue.config.productionTip = false;
 
-Axios.get('http://localhost:3000/api/user/form')
+Axios.get(process.env.VUE_APP_API_URL + '/user/form')
   .then(({ data }) => {
     store.dispatch('populateForm', data);
 
