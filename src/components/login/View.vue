@@ -1,7 +1,7 @@
 <template>
   <section class="container">
-    <b-field label="Administrateur" :type="username.type" :message="username.message">
-      <b-input v-model="username.value"></b-input>
+    <b-field label="Administrateur" :type="email.type" :message="email.message">
+      <b-input v-model="email.value"></b-input>
     </b-field>
 
     <b-field label="Mot de passe" :type="password.type" :message="password.message">
@@ -19,15 +19,15 @@ export default {
   name: "Login",
   data() {
     return {
-      username: { value: undefined, type: "", message: "", wrong: false },
+      email: { value: undefined, type: "", message: "", wrong: false },
       password: { value: undefined, type: "", message: "", wrong: false }
     };
   },
   methods: {
     login() {
-      if (this.username.value && this.password.value) {
-        Axios.post(this.$store.state.url + "/login", {
-          username: this.username.value,
+      if (this.email.value && this.password.value) {
+        Axios.post(this.$store.state.url + "/admin/login", {
+          email: this.email.value,
           password: this.password.value
         })
           .then(response => {
@@ -36,31 +36,31 @@ export default {
             this.$router.push("/admin");
           })
           .catch(err => {
-            this.username.wrong = err.response.data == "Admin not found";
+            this.email.wrong = err.response.data == "Admin not found";
             this.password.wrong = err.response.data == "Wrong password";
           });
       } else {
-        if (!this.username.value) this.username.value = "";
+        if (!this.email.value) this.email.value = "";
         if (!this.password.value) this.password.value = "";
       }
     }
   },
   watch: {
-    "username.value": function(value) {
+    "email.value": function(value) {
       if (value == "") {
-        this.username.type = "is-warning";
-        this.username.message = "Veuillez spécifier un nom d'administrateur";
-        this.username.wrong = false;
+        this.email.type = "is-warning";
+        this.email.message = "Veuillez spécifier un nom d'administrateur";
+        this.email.wrong = false;
       } else {
-        this.username.type = "";
-        this.username.message = "";
-        this.username.wrong = false;
+        this.email.type = "";
+        this.email.message = "";
+        this.email.wrong = false;
       }
     },
-    "username.wrong": function(value) {
+    "email.wrong": function(value) {
       if (value) {
-        this.username.type = "is-danger";
-        this.username.message = "Cet administrateur n'existe pas";
+        this.email.type = "is-danger";
+        this.email.message = "Cet administrateur n'existe pas";
       }
     },
     "password.value": function(value) {
