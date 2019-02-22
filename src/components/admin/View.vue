@@ -1,70 +1,107 @@
 <template>
-    <section class="container">
-        <div class="block">
-            <b-switch v-model="openOnFocus">
-                Open dropdown on focus
-            </b-switch>
-            <b-switch v-model="keepFirst">
-                Keep-first <small>(will always have first option pre-selected)</small>
-            </b-switch>
-        </div>
-        <p class="content"><b>Selected:</b> {{ selected }}</p>
-        <b-field label="Find a name">
-            <b-autocomplete
-                v-model="name"
-                placeholder="e.g. Anne"
-                :keep-first="keepFirst"
-                :open-on-focus="openOnFocus"
-                :data="filteredDataObj"
-                field="user.first_name"
-                @select="option => selected = option">
-            </b-autocomplete>
-        </b-field>
-    </section>
+  <div class="container">
+    <add-category @add="addCategory"/>
+
+    <transition-group name="categories" tag="div">
+      <category
+        :category="category"
+        :key="category.id"
+        v-for="(category, index) in categories"
+        @remove="removeCategory(index)"
+        @move="moveCategory(index, ...arguments)"
+      />
+    </transition-group>
+  </div>
 </template>
 
 <script>
-// import Question from './Question';
-import Axios from 'axios';
+import AddCategory from "./AddCategory";
+
+import Category from "./Category";
+
+import services from "./services";
+
+import Axios from "axios";
 
 export default {
-    name: 'Admin',
-    // components: { Question },
-    data() {
-        return {
-            categories: [],
-            categoryId: '',
-            questions: []
-        }
+  name: "Alternative",
+
+  components: { AddCategory, Category },
+
+  data() {
+    return {
+      categories: this.$store.state.form
+    };
+  },
+
+  methods: {
+    removeCategory(index) {
+      services
+        .removeCategory(index)
+        .then(() => {
+          this.categories.splice(index, 1);
+        })
+        .catch(({ response }) => {
+          this.$snackbar.open({
+            message: "Une erreur est survenue, veuillez réessayer.",
+            type: "is-danger"
+          });
+        });
     },
-    mounted() {
-        this.loading = true;
-        Axios.get(this.$store.state.url + '/categories')
-            .then((response) => {
-                this.categories = response.data;
-            })
-            .catch((err) => this.openSnackbar(err));
+
+    addCategory(category) {
+      services
+        .createCategory(category)
+        .then(({ data }) => {
+
+          this.categories.push(data.category);
+        })
+        .catch(({ response }) => {
+          console.log(response.data);
+          if (response.data.includes("name cannot be null")) {
+            this.category.message = "Veuillez spécifier un nom";
+          } else {
+            this.category.message = "Cette catégorie existe déjà";
+          }
+        });
     },
-    methods: {
-        openSnackbar(err) {
-            this.$snackbar.open({
-                duration: 3000,
-                message: err.message,
-                type: 'is-danger',
-                position: 'is-bottom-right',
-                actionText: 'Effacer',
-                queue: false
-            });
+
+    async moveCategory(index, orientation) {
+      try {
+        const category = this.categories[index];
+
+        if (orientation == "down") {
+          if (index < this.categories.length - 1) {
+            await services.moveCategory(category.id, orientation);
+            this.categories.splice(index, 1);
+            this.categories.splice(index + 1, 0, category);
+          }
+        } else {
+          if (index > 0) {
+            await services.moveCategory(category.id, orientation);
+            this.categories.splice(index, 1);
+            this.categories.splice(index - 1, 0, category);
+          }
         }
-    },
-    watch: {
-        categoryId: function(value) {
-            Axios.get(this.$store.state.url + '/questions?categoryId=' + value)
-            .then((response) => {
-                this.questions = response.data;
-            })
-            .catch((err) => this.openSnackbar(err));
-        }
+      } catch (error) {
+        this.$snackbar.open({
+          message: "Une erreur est survenue, veuillez réessayer.",
+          type: "is-danger"
+        });
+      }
     }
-}
+  },
+
+  watch: {
+    "category.name"() {
+      this.category.message = null;
+    }
+  }
+};
 </script>
+
+<style lang="scss">
+.categories-move {
+  transition: transform 0.35s;
+}
+</style>

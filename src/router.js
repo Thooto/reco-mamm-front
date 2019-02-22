@@ -13,7 +13,6 @@ import General from '@/components/results/General.vue';
 import Trends from '@/components/results/Trends.vue';
 import Download from '@/components/results/Download.vue';
 
-
 Vue.use(Router);
 
 export default new Router({
@@ -23,12 +22,13 @@ export default new Router({
         { path: '/', name: 'home', component: Home },
         { path: '/connexion', name: 'login', component: Login },
         {
-            path: '/admin', name: 'admin',
+            path: '/admin',
             component: Admin,
-            beforeEnter(to, from, next) {
-                if (store.state.logged) return next();
-                next('/');
-            }
+            name: 'admin'
+            // beforeEnter(to, from, next) {
+            //     if (store.state.logged) return next();
+            //     next('/');
+            // }
         },
         { path: '/parcours', name: 'survey', component: Survey },
         { path: '/a-propos', name: 'about', component: About },

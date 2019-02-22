@@ -44,6 +44,8 @@
 <script>
 import Progression from "./Progression";
 
+import Axios from "axios";
+
 export default {
   name: "Survey",
   components: { Progression },
@@ -93,7 +95,13 @@ export default {
             this.$store.dispatch("setDisplayed", this.displayed);
             this.$store.dispatch("setCategory", this.category.index);
           } else {
-            this.$router.push({ name: "results" });
+            const answers = this.$store.state.answers;
+            Axios.post(this.$store.state.url + "/user/answer", { answers })
+              .then(() => {
+                console.log('Results pushed');
+                this.$router.push({ name: "results" });
+              })
+              .catch(console.error);
           }
         }
       }

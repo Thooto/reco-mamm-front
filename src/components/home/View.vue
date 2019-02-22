@@ -1,6 +1,8 @@
 <template>
-  <div class="wrapper z-top">
-    <img src="../../assets/pills_left.svg" class="pills-left">
+  <div class="wrapper">
+    <!-- <div class="pills-wrapper"> -->
+      <img src="../../assets/pills_left.svg" class="pills pills-left">
+    <!-- </div> -->
     <div class="container">
       <div class="has-padding">
         <div class="has-max-width">
@@ -26,7 +28,9 @@
         </div>
       </div>
     </div>
-    <img class="is-pulled-right pills-right" src="../../assets/pills_right.svg">
+    <!-- <div class="pills-wrapper"> -->
+      <img class="pills pills-right is-pulled-right" src="../../assets/pills_right.svg">
+    <!-- </div> -->
   </div>
 </template>
 
@@ -37,13 +41,14 @@ export default {
     message() {
       const start = this.$store.getters.start;
 
-      return start ? 'Commencer' : 'Reprendre';
+      return start ? "Commencer" : "Reprendre";
     }
   }
 };
 </script>
 
 <style lang="scss">
+
 .wrapper {
   width: 100%;
 }
@@ -62,15 +67,15 @@ export default {
   margin-bottom: 30px;
 }
 
+.pills-wrapper {
+  overflow: hidden;
+  flex-grow: 1;
+}
 .pills-left {
-  margin-left: -100px;
+  margin-left: -50px;
 }
 
 .pills-right {
-  margin-right: -100px;
-}
-
-.z-top {
-  z-index: 0;
+  margin-right: -50px;
 }
 </style>

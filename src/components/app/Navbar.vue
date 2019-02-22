@@ -22,15 +22,16 @@
 
       <div class="navbar-menu" :class="{'is-active': isActive}">
         <div class="navbar-end">
-          <router-link class="navbar-item" to="/parcours" @click.native="closeMenu()">
+          <router-link class="navbar-item aligned" to="/parcours" @click.native="closeMenu()">
             <b-icon icon="arrow-right-circle-outline"></b-icon>
             <p class="has-margin-left">{{started}}</p>
           </router-link>
-          <router-link class="navbar-item" to="/a-propos" @click.native="closeMenu()">
+          <router-link class="navbar-item aligned" to="/a-propos" @click.native="closeMenu()">
             <b-icon icon="help-circle-outline"></b-icon>
             <p class="has-margin-left">À propos</p>
           </router-link>
-          <a class="navbar-item" v-if="logged" @click="logout()">Déconnexion</a>
+          <router-link class="navbar-item aligned" to="/admin" v-if="logged"><p>Page admin</p></router-link>
+          <a class="navbar-item aligned" v-if="logged" @click="logout()"><p>Déconnexion</p></a>
         </div>
       </div>
     </div>
@@ -88,4 +89,5 @@ export default {
   font-size: 22px;
   font-weight: bold;
 }
+
 </style>

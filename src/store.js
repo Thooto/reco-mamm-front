@@ -3,8 +3,6 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-console.log(process.env.VUE_APP_API_URL);
-
 export default new Vuex.Store({
     state: {
         url: process.env.VUE_APP_API_URL,
@@ -69,7 +67,11 @@ export default new Vuex.Store({
     },
     actions: {
         populateForm(context, form) {
-            context.commit('populateForm', form);
+            context.commit('populateForm', form.map(category => ({
+                name: category.name,
+                id: category.id,
+                questions: category.questions
+            })));
         },
         answer(context, answerId) {
             context.commit('answer', answerId);

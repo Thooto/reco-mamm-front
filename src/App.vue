@@ -1,14 +1,16 @@
 <template>
   <section>
     <div class="hero is-primary is-fullheight">
-      <span class="bg-img-wrapper z-bottom"/>
+      <div class="bg-img-wrapper">
+        <span class="bg-img"/>
+      </div>
       <div class="hero-head">
         <navbar/>
       </div>
 
-      <div class="hero-body">
+      <div class="hero-body" :style="centered">
         <!-- <transition name="fade"> -->
-          <router-view/>
+        <router-view/>
         <!-- </transition> -->
       </div>
     </div>
@@ -33,7 +35,12 @@ export default {
   components: { Navbar },
   methods: {
     reset() {
-      this.$store.dispatch('reset');
+      this.$store.dispatch("reset");
+    }
+  },
+  computed: {
+    centered() {
+      return this.$route.name == "home" ? "" : "align-items: flex-start";
     }
   }
 };
@@ -54,25 +61,27 @@ $family-primary: "Quicksand";
 }
 
 .bg-img-wrapper {
-  position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  bottom: -30px;
-  
-  overflow: hidden;
-  border: 1px solid red;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  filter: blur(20px);
-  border: 1px solid red;
-  background-image: url('assets/background.png');
-  background-position: center;
-  background-size: cover;
+  overflow: hidden;
+
+  z-index: -1;
 }
 
-.z-bottom {
-  z-index: -1;
+.bg-img {
+  width: 100%;
+  height: 100%;
+  
+  filter: blur(20px);
+  background-image: url("assets/background.png");
+  background-position: center;
+  background-size: cover;
+
+  transform: scale(1.1);
 }
 </style>
